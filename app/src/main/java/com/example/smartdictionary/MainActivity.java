@@ -31,31 +31,14 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button add = (Button)v;
                 openDialog();
             }
         });
-        DBHelper helper = new DBHelper(this);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        ArrayList<String> arrayList = getData(db.query(DBHelper.TABLE_NAME,null,null,null,null,null,null));
+        SQLOperations.openDataBase(this); //open database
+        ArrayList<String> arrayList = SQLOperations.getAllData();
+        SQLOperations.CloseDatabase();           //close database
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(arrayAdapter);
-        helper.close();
-    }
-
-    public ArrayList<String> getData(@NonNull Cursor cursor)
-    {
-        ArrayList<String> arrayList = new ArrayList<>();
-        int count = cursor.getCount();
-        if (cursor.moveToFirst())
-        {
-            do
-            {
-                arrayList.add(cursor.getString(1));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return arrayList;
     }
     public void openDialog()
     {

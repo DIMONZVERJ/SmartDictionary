@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 
 public class ExampleDialog extends AppCompatDialogFragment {
-    private EditText word;
+    private EditText word_edit;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -21,10 +22,12 @@ public class ExampleDialog extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        SQLOperations.openDataBase(getActivity());
+                        SQLOperations.insert(word_edit.getText().toString());
+                        SQLOperations.CloseDatabase();
                     }
                 });
-        word = view.findViewById(R.id.editText);
+        word_edit = view.findViewById(R.id.editText);
         return builder.create();
     }
 }
