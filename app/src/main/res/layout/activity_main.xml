@@ -9,16 +9,24 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+    </ListView>
 
-    <Button
-        android:id="@+id/button"
-        style="@android:style/Widget.Material.Button.Toggle"
-        android:layout_width="127dp"
-        android:layout_height="114dp"
-        android:layout_alignParentRight="true"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_add_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="добавить слово" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@drawable/picture_add" />
 
 
 </RelativeLayout>
