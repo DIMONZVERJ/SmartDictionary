@@ -12,6 +12,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String ID = "id";
     public static final String WORD = "word";
+    public static final String TRANSLATE = "translate";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -19,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query_create = "CREATE TABLE "+TABLE_NAME+" ( "+ID +" integer not null primary key autoincrement, " + WORD + " text not null)";
+        String query_create = "CREATE TABLE "+TABLE_NAME+" ( "+ID +" integer not null primary key autoincrement, " + WORD + " text not null, "+TRANSLATE+" text not null)";
         db.execSQL(query_create);
     }
 

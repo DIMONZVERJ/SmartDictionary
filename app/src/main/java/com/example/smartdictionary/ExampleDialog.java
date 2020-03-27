@@ -15,6 +15,7 @@ import java.util.Objects;
 
 public class ExampleDialog extends AppCompatDialogFragment {
     private EditText word_edit;
+    private EditText translate_edit;
     private ListView listView;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
@@ -26,10 +27,11 @@ public class ExampleDialog extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ListOperations.insert(word_edit.getText().toString());
+                        ListOperations.insert(word_edit.getText().toString(),translate_edit.getText().toString());
                     }
                 });
         word_edit = view.findViewById(R.id.editText);
+        translate_edit = view.findViewById(R.id.editText1);
         listView = view.findViewById(R.id.listView);
         return builder.create();
     }

@@ -5,7 +5,7 @@
     android:layout_width="300dp"
     android:layout_height="177dp"
     android:layout_gravity="center"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
 
     <EditText
@@ -17,5 +17,15 @@
         android:inputType="text|textAutoCorrect"
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="28dp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:inputType="textPersonName"
+        android:hint="@string/translate_word"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="50dp" />
 
 </LinearLayout>
