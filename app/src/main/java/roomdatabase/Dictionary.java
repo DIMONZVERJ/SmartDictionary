@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Dictionary{
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String word;
@@ -20,6 +20,10 @@ public class Dictionary{
         this.id = id;
         this.word = word;
         this.translate = translate;
+    }
+
+    public Dictionary() {
+
     }
 
     public int getId() {

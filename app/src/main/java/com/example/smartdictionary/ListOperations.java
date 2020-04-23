@@ -1,22 +1,24 @@
 package com.example.smartdictionary;
 
+
+import android.util.ArrayMap;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import roomdatabase.*;
+
 
 class ListOperations {
     private static SimpleAdapter adapter;
     private static ListView listView;
     private static MainActivity activity;
-    private static  ArrayList<HashMap<String,String>> list;
-    static void Initialize(MainActivity activity)
+    private static ArrayList<ArrayMap<String, String>> list;
+    static void Initialize(final MainActivity activity)
     {
         ListOperations.activity = activity;
         listView = activity.findViewById(R.id.listView);
-        SQLOperations sqlOperations = new SQLOperations(activity);
-        list = sqlOperations.getAllData();
+        list = convertToListMap(((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().getAll());
         adapter = new SimpleAdapter(
                 activity,
                 list,
@@ -24,13 +26,27 @@ class ListOperations {
                 new String[]{"word","translate"},
                 new int[]{android.R.id.text1,android.R.id.text2});
         listView.setAdapter(adapter);
-        sqlOperations.CloseDatabase();
     }
-    static void insert(String word, String translate)
+
+    static ArrayList<ArrayMap<String, String>> convertToListMap(List<roomdatabase.Dictionary> wordsList){
+        ArrayList<ArrayMap<String, String>> list = new ArrayList<ArrayMap<String, String>>();
+        for (roomdatabase.Dictionary word:wordsList) {
+            ArrayMap<String, String> arrayMap = new ArrayMap<String, String>();
+            arrayMap.put("word", word.getWord());
+            arrayMap.put("translate",word.getTranslate());
+            list.add(arrayMap);
+        }
+        return list;
+    }
+    static void insert(final String word, final String translate)
     {
-        SQLOperations sqlOperations = new SQLOperations(activity);
-        sqlOperations.insert(word, translate);
-        HashMap<String, String> set = new HashMap<String,String>();
+        roomdatabase.Dictionary words = new roomdatabase.Dictionary();
+        words.setWord(word);
+        words.setTranslate(translate);
+        ((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().insert(words);
+
+        List<Dictionary> list_a = ((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().getAll();
+        ArrayMap<String, String> set = new ArrayMap<>();
         set.put("word",word);
         set.put("translate",translate);
         list.add(set);
@@ -40,6 +56,5 @@ class ListOperations {
                 adapter.notifyDataSetChanged();
             }
         });
-        sqlOperations.CloseDatabase();
     }
 }
