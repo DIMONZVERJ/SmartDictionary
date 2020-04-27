@@ -6,7 +6,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import java.util.ArrayList;
 import java.util.List;
-import roomdatabase.*;
+
+import roomdatabase.AppDelegate;
+import roomdatabase.Dictionary;
 
 
 class ListOperations {
@@ -38,6 +40,7 @@ class ListOperations {
         }
         return list;
     }
+
     static void insert(final String word, final String translate)
     {
         roomdatabase.Dictionary words = new roomdatabase.Dictionary();
@@ -50,6 +53,30 @@ class ListOperations {
         set.put("word",word);
         set.put("translate",translate);
         list.add(set);
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    static void update(final String word, final String translate)
+    {
+
+    }
+
+    static void delete(final String word, final String translate)
+    {
+        roomdatabase.Dictionary words = new roomdatabase.Dictionary();
+        words.setWord(word);
+        words.setTranslate(translate);
+        ((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().delete(words);
+
+        ArrayMap<String, String> set = new ArrayMap<>();
+        set.put("word",word);
+        set.put("translate",translate);
+        list.remove(set);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

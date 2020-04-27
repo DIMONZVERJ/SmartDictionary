@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.arch.persistence.room.Room;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import roomdatabase.AppDelegate;
 
 public class MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
+    ListView listView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -29,11 +32,28 @@ public class MainActivity extends AppCompatActivity {
         });
         ((AppDelegate)getApplicationContext()).getAppDatabase().close();
 
+        listView = findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openEdit_Delete();
+            }
+        });
+
     }
+
+    public void openEdit_Delete() {
+        Edit_DeleteDialog edit_deleteDialog = new Edit_DeleteDialog();
+        Edit_DeleteDialog.activity = this;
+        edit_deleteDialog.show(getSupportFragmentManager(), "edit dialog");
+    }
+
     public void openDialog()
     {
         ExampleDialog exampleDialog = new ExampleDialog();
         ExampleDialog.activity = this;
         exampleDialog.show(getSupportFragmentManager(),"example dialog");
     }
+
+
 }

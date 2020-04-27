@@ -3,4 +3,6 @@
     <string name="enter_word">Введите слово</string>
     <string name="ok_button">Добавить слово</string>
     <string name="translate_word">Введите перевод</string>
+    <string name="edit_button">Редактировать</string>
+    <string name="delete_button">Удалить</string>
 </resources>

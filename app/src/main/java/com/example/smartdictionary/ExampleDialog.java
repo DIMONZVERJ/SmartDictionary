@@ -45,9 +45,13 @@ public class ExampleDialog extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final String word = word_edit.getText().toString();
-                        final String translate = translate_edit.getText().toString();
-                        ListOperations.insert(word,translate);
+                        final String word = word_edit.getText().toString().toLowerCase();
+                        final String translate = translate_edit.getText().toString().toLowerCase();
+                        if (!word.equals("") && (!translate.equals("")))
+                        {
+                            ListOperations.insert(word,translate);
+                            Toast.makeText(activity,"Слово добавлено в ваш словарь", Toast.LENGTH_SHORT).show();
+                        }
 //                        TimerTask task = new TimerTask() {
 //                            @Override
 //                            public void run() {
@@ -60,9 +64,7 @@ public class ExampleDialog extends AppCompatDialogFragment {
 //                            }
 //                        };
 //                        Timer timer = new Timer();
-//                        timer.schedule(task, 5*1000);
-                        Toast.makeText(activity,"Слово добавлено в ваш словарь", Toast.LENGTH_SHORT).show();
-
+//                        timer.schedule(task, 5*1000);}
                     }
                 });
         word_edit = view.findViewById(R.id.editText);

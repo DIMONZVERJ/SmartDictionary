@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface DictionaryDao{
 
-    @Query("SELECT * FROM Dictionary")
+    @Query("SELECT * FROM Dictionary order by word asc")
     List<Dictionary> getAll();
 
     @Query("SELECT * FROM Dictionary WHERE id = :id")
