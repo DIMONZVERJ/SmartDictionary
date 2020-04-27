@@ -35,15 +35,17 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 openEdit_Delete();
             }
         });
 
     }
 
-    public void openEdit_Delete() {
-        Edit_DeleteDialog edit_deleteDialog = new Edit_DeleteDialog();
+    public void openEdit_Delete()
+    {
+        final Edit_DeleteDialog edit_deleteDialog = new Edit_DeleteDialog();
         Edit_DeleteDialog.activity = this;
         edit_deleteDialog.show(getSupportFragmentManager(), "edit dialog");
     }

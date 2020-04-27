@@ -45,8 +45,8 @@ public class ExampleDialog extends AppCompatDialogFragment {
                 .setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final String word = word_edit.getText().toString().toLowerCase();
-                        final String translate = translate_edit.getText().toString().toLowerCase();
+                        final String word = word_edit.getText().toString().toLowerCase().trim();
+                        final String translate = translate_edit.getText().toString().toLowerCase().trim();
                         if (!word.equals("") && (!translate.equals("")))
                         {
                             ListOperations.insert(word,translate);
