@@ -45,7 +45,7 @@ public class Edit_DeleteDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         final String word = word_edit.getText().toString().toLowerCase().trim();
                         final String translate = translate_edit.getText().toString().toLowerCase().trim();
-                        ListOperations.delete(word, translate);
+                        ListOperations.delete(id);
                         Toast.makeText(activity, "Слово удалено", Toast.LENGTH_SHORT).show();
                     }
                 })

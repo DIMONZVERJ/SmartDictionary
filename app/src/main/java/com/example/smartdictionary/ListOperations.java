@@ -81,12 +81,10 @@ class ListOperations {
         });
     }
 
-    static void delete(final String word, final String translate)
+    static void delete(int id)
     {
-        ArrayMap<String, String> set = new ArrayMap<>();
-        set.put("word",word);
-        set.put("translate",translate);
-        list.remove(set);
+        list.remove(id);
+        ((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().deleteById(id+1);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
