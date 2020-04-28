@@ -27,6 +27,7 @@ import roomdatabase.Dictionary;
 import roomdatabase.DictionaryDao;
 
 public class Edit_DeleteDialog extends AppCompatDialogFragment {
+
     private int id;
     private EditText word_edit;
     private EditText translate_edit;
@@ -51,7 +52,6 @@ public class Edit_DeleteDialog extends AppCompatDialogFragment {
                 .setNeutralButton(R.string.edit_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final int id = 0; // which не работает почему-то
                         final String word = word_edit.getText().toString().toLowerCase().trim();
                         final String translate = translate_edit.getText().toString().toLowerCase().trim();
                         if (!word.equals("") && (!translate.equals("")))
@@ -64,5 +64,9 @@ public class Edit_DeleteDialog extends AppCompatDialogFragment {
         word_edit = view.findViewById(R.id.editText);
         translate_edit = view.findViewById(R.id.editText1);
         return builder.create();
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -37,15 +37,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                openEdit_Delete();
+                openEdit_Delete((int) (id));
             }
         });
 
     }
 
-    public void openEdit_Delete()
+    public void openEdit_Delete(int id)
     {
-        final Edit_DeleteDialog edit_deleteDialog = new Edit_DeleteDialog();
+        Edit_DeleteDialog edit_deleteDialog = new Edit_DeleteDialog();
+        edit_deleteDialog.setId(id);
         Edit_DeleteDialog.activity = this;
         edit_deleteDialog.show(getSupportFragmentManager(), "edit dialog");
     }

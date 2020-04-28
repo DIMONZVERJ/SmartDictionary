@@ -66,6 +66,12 @@ class ListOperations {
         ArrayMap<String, String> set = new ArrayMap<>();
         set.put("word",word);
         set.put("translate",translate);
+
+        ((AppDelegate)activity.getApplicationContext())
+                .getAppDatabase()
+                .DictionaryDao()
+                .update(new Dictionary(id+1, word, translate));
+
         list.set(id,set);
         activity.runOnUiThread(new Runnable() {
             @Override
