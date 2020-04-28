@@ -31,9 +31,9 @@ class ListOperations {
     }
 
     static ArrayList<ArrayMap<String, String>> convertToListMap(List<roomdatabase.Dictionary> wordsList){
-        ArrayList<ArrayMap<String, String>> list = new ArrayList<ArrayMap<String, String>>();
+        ArrayList<ArrayMap<String, String>> list = new ArrayList<>();
         for (roomdatabase.Dictionary word:wordsList) {
-            ArrayMap<String, String> arrayMap = new ArrayMap<String, String>();
+            ArrayMap<String, String> arrayMap = new ArrayMap<>();
             arrayMap.put("word", word.getWord());
             arrayMap.put("translate",word.getTranslate());
             list.add(arrayMap);
@@ -63,11 +63,6 @@ class ListOperations {
 
     static void update(final int id, final String word, final String translate)
     {
-        roomdatabase.Dictionary words = new roomdatabase.Dictionary();
-        words.setWord(word);
-        words.setTranslate(translate);
-        ((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().update(words);
-
         ArrayMap<String, String> set = new ArrayMap<>();
         set.put("word",word);
         set.put("translate",translate);
@@ -82,11 +77,6 @@ class ListOperations {
 
     static void delete(final String word, final String translate)
     {
-        roomdatabase.Dictionary words = new roomdatabase.Dictionary();
-        words.setWord(word);
-        words.setTranslate(translate);
-        ((AppDelegate)activity.getApplicationContext()).getAppDatabase().DictionaryDao().delete(words);
-
         ArrayMap<String, String> set = new ArrayMap<>();
         set.put("word",word);
         set.put("translate",translate);
